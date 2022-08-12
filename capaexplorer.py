@@ -158,8 +158,11 @@ def capa_place(items):
                     
 
 if __name__ == '__main__':
-    log_path = askFile("Drltrace log", "Choose file:")
-    log_path = str(log_path)
+    args = getScriptArgs()
+    if len(args) != 1:
+        print("""[*] Usage:\n ./analyzeHeadless <PATH_TO_GHIDRA_PROJECT> <PROJECT_NAME> \\\n-process|-import <TARGET_FILE> [-scriptPath <PATH_TO_SCRIPT_DIR>] \\\n-preScript <SCRIPT> -postScript capaexplorer.py ')""")
+        exit(0)
+    log_path = str(args[0])
     data = ""
     with open(log_path, "rb") as file:
         data = file.read()
